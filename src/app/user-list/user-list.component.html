@@ -1,0 +1,24 @@
+{{userList | json}}
+<table *ngIf="hasUsers" border="1">
+	<tr>
+		<th width="200px"> Name </th>
+		<th> Phone Number </th>
+		<th> Email </th>
+		<th> Gender </th>
+		<th> Location </th>
+		<th> Edit </th>
+		<th> Delete </th>
+	</tr>
+  <tbody>
+    <tr *ngFor="let user of userList"  style="width=100%;border: 1">
+      <td style="200px;">{{user.name}}</td>
+      <td>{{user.phoneNumber}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.gender}}</td>
+      <td>{{user.location}}</td>
+      <td><a [routerLink]="['/edit',user.id]">Edit</a></td>
+      <td><button (click)="handleDeleteClick(user.id)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+{{userList.length}}

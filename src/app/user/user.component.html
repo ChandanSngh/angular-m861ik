@@ -1,0 +1,54 @@
+<div class="links "><a routerLink="/users">users</a></div>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+	<div class="form-group">
+		<label>Name</label>
+    <input type="text" formControlName="name" class="form-control"/>
+    <div *ngIf="userForm.controls.name.dirty">
+      <span *ngIf="userForm.controls.name.invalid"> Name is requried</span>
+    </div>
+  </div>
+   <div class="form-group">
+    <label>Phone Number </label>
+    <input  type="text" class="form-control" formControlName="phoneNumber" placeholder="+91-XXX-XXX-XXXX" required/>
+    <span *ngIf="userForm.controls.name.invalid"> Phone Numebr is required</span>
+  </div>
+   <div class="form-group">
+    <label>Email</label>
+    <input  type="email" class="form-control" formControlName="email" required/>
+    <div *ngIf="userForm.controls.email.dirty"   >
+    <span style="color:red" *ngIf="userForm.controls.email.errors?.required"> email is required</span>
+    <span style="color:red" *ngIf="userForm.controls.email.errors?.email"> email is not valid</span>
+</div>
+  </div>
+   <div class="form-group">
+    <label>Gender</label>
+    <div>
+      <input  type="radio" value="male" formControlName="gender"/> Male
+    <input  type="radio" class="form-control" value="female" formControlName="gender"/> Female
+    </div>
+  </div>
+  <div class="form-group" *ngIf="userForm.controls.locations">
+    <label>Locations</label>
+    <div formArrayName="locations" >
+      <label for="i" *ngFor="let location of userForm.controls.locations.controls; let i = index">
+      <input  type="checkbox"  value="pLocations[i]" [formControlName]="i"> {{pLocations[i]}}
+      </label>
+  </div>
+  </div>
+   <button type="submit"  [disabled]="!userForm.valid">Submit</button>
+</form>
+
+ <!-- *ngFor="location of userForm.locations" -->
+<style>
+  
+ .links {
+    padding: 2rem;
+ }
+button {
+  padding: 10px;
+  width: 150px;
+}
+ label {
+   padding:5px;
+ }
+</style>

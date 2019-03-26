@@ -1,0 +1,16 @@
+/* Add application styles & imports to this file! */
+
+.form-group {
+  margin-bottom : 20px;
+  display: flex;
+  flex-direction:  column;
+  
+}
+
+form {
+   padding: 20px;
+}
+
+form input{ 
+  padding: 5px;
+}
